@@ -1,0 +1,2935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliteGamix - Professional Esports Gaming Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;700&family=Audiowide&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-green: #00ff41;
+            --neon-cyan: #00d4ff;
+            --neon-purple: #b100ff;
+            --neon-pink: #ff006e;
+            --neon-orange: #ff6b35;
+            --dark-bg: #0a0e27;
+            --darker-bg: #05070f;
+            --glass-bg: rgba(10, 14, 39, 0.8);
+            --border-color: rgba(0, 255, 65, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b8d4;
+            --accent: #00ff41;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ===== PAGE LOADER ===== */
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #05070f 0%, #0a0e27 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeOut 0.8s ease-out 2.5s forwards;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-logo {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .loader-spinner {
+            width: 80px;
+            height: 80px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--neon-green);
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+            margin: 0 auto 2rem;
+        }
+
+        .loader-text {
+            font-family: 'Audiowide', cursive;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; visibility: visible; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* ===== NAVBAR ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(5, 7, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.1);
+        }
+
+        .logo {
+            font-family: 'Audiowide', cursive;
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+            letter-spacing: 1px;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            -webkit-text-fill-color: var(--neon-green);
+            filter: drop-shadow(0 0 10px var(--neon-green));
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-item > a:hover {
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green);
+            background: rgba(0, 255, 65, 0.1);
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(5, 7, 15, 0.98);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            min-width: 200px;
+            padding: 0.5rem 0;
+            list-style: none;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+            margin-top: 0.5rem;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown li {
+            padding: 0;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .dropdown a:hover {
+            color: var(--neon-green);
+            background: rgba(0, 255, 65, 0.1);
+            border-left-color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .search-bar {
+            background: rgba(0, 255, 65, 0.05);
+            border: 2px solid var(--border-color);
+            border-radius: 25px;
+            padding: 0.7rem 1.5rem;
+            color: var(--text-primary);
+            width: 200px;
+            transition: all 0.3s ease;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--neon-green);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+            background: rgba(0, 255, 65, 0.1);
+        }
+
+        .search-bar::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .live-btn {
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 0, 110, 0.5);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .live-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(255, 0, 110, 0.8), 0 8px 20px rgba(255, 0, 110, 0.4);
+        }
+
+        .live-btn::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #ff0000;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.3; }
+        }
+
+        .auth-btns {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .auth-btn {
+            background: transparent;
+            color: var(--neon-green);
+            border: 2px solid var(--neon-green);
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+
+        .auth-btn:hover {
+            background: rgba(0, 255, 65, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--neon-green);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            margin-top: 80px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.05) 0%, rgba(0, 212, 255, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 255, 65, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -200px;
+            left: -200px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -200px;
+            right: -200px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-30px) translateX(20px); }
+            50% { transform: translateY(-60px) translateX(0); }
+            75% { transform: translateY(-30px) translateX(-20px); }
+        }
+
+        .hero-wrapper {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .hero-character {
+            width: 200px;
+            height: 300px;
+            position: relative;
+            animation: characterBounce 3s ease-in-out infinite;
+        }
+
+        .hero-character.left {
+            animation-delay: 0s;
+        }
+
+        .hero-character.right {
+            animation-delay: 1s;
+        }
+
+        @keyframes characterBounce {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-30px) rotate(2deg); }
+        }
+
+        .character-avatar {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.2), rgba(0, 212, 255, 0.2));
+            border-radius: 20px;
+            border: 3px solid var(--neon-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3), inset 0 0 30px rgba(0, 255, 65, 0.1);
+        }
+
+        .character-avatar::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 65, 0.1) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 700px;
+            z-index: 11;
+        }
+
+        .hero-title {
+            font-family: 'Audiowide', cursive;
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            text-shadow: 0 0 40px rgba(0, 255, 65, 0.3);
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(0, 255, 65, 0.5)); }
+            50% { filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.5)); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn.primary {
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+            color: var(--darker-bg);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.5), inset 0 0 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .cta-btn.primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 50px rgba(0, 255, 65, 0.8), 0 15px 40px rgba(0, 255, 65, 0.4);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: var(--neon-green);
+            border: 3px solid var(--neon-green);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+        }
+
+        .cta-btn.secondary:hover {
+            background: rgba(0, 255, 65, 0.1);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.8);
+            transform: translateY(-5px);
+        }
+
+        /* ===== AUTH MODALS ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 7, 15, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.05), rgba(0, 212, 255, 0.05));
+            border: 2px solid var(--border-color);
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 450px;
+            width: 90%;
+            position: relative;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 50px rgba(0, 255, 65, 0.2);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--neon-green);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .modal-title {
+            font-family: 'Audiowide', cursive;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--neon-green);
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.7rem;
+            color: var(--neon-cyan);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(10, 14, 39, 0.6);
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 8px;
+            font-family: 'Rajdhani', sans-serif;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--neon-green);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+            background: rgba(0, 255, 65, 0.05);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+            color: var(--darker-bg);
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.6);
+        }
+
+        .toggle-auth {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .toggle-auth a {
+            color: var(--neon-green);
+            cursor: pointer;
+            text-decoration: underline;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-auth a:hover {
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        section:nth-child(odd) {
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.02) 0%, rgba(0, 212, 255, 0.02) 100%);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Audiowide', cursive;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            letter-spacing: 2px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--neon-green), var(--neon-cyan));
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+        }
+
+        /* ===== GAMES SECTION ===== */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .game-card {
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.08), rgba(0, 212, 255, 0.08));
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(0, 212, 255, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .game-card:hover {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.4), inset 0 0 30px rgba(0, 255, 65, 0.05);
+            transform: translateY(-15px);
+        }
+
+        .game-card:hover::before {
+            opacity: 1;
+        }
+
+        .game-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+        }
+
+        .game-name {
+            font-family: 'Audiowide', cursive;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            letter-spacing: 1px;
+        }
+
+        .game-desc {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .play-btn {
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+            color: var(--darker-bg);
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 11;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 25px rgba(0, 255, 65, 0.6);
+        }
+
+        /* ===== BOOKING SECTION ===== */
+        .booking-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+            align-items: start;
+        }
+
+        .booking-form {
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.05), rgba(0, 212, 255, 0.05));
+            border: 2px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group-booking {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group-booking label {
+            display: block;
+            margin-bottom: 0.7rem;
+            color: var(--neon-green);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .form-group-booking input,
+        .form-group-booking select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(10, 14, 39, 0.6);
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 8px;
+            font-family: 'Rajdhani', sans-serif;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .form-group-booking input:focus,
+        .form-group-booking select:focus {
+            outline: none;
+            border-color: var(--neon-green);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+            background: rgba(0, 255, 65, 0.05);
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .time-slot {
+            padding: 0.8rem;
+            background: rgba(10, 14, 39, 0.6);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .time-slot:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .time-slot.booked {
+            background: rgba(255, 0, 110, 0.2);
+            border-color: var(--neon-pink);
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .time-slot.selected {
+            background: rgba(0, 255, 65, 0.2);
+            border-color: var(--neon-green);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+        }
+
+        .submit-btn-booking {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+            color: var(--darker-bg);
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 1.5rem;
+        }
+
+        .submit-btn-booking:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.6);
+        }
+
+        .bookings-list {
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.05), rgba(0, 212, 255, 0.05));
+            border: 2px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .booking-item {
+            background: rgba(10, 14, 39, 0.6);
+            border-left: 4px solid var(--neon-green);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .booking-item:hover {
+            background: rgba(0, 255, 65, 0.05);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+        }
+
+        .booking-info h4 {
+            color: var(--neon-green);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .booking-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .booking-actions {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .action-btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .edit-btn {
+            background: var(--neon-cyan);
+            color: var(--darker-bg);
+        }
+
+        .edit-btn:hover {
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+            transform: scale(1.05);
+        }
+
+        .delete-btn {
+            background: var(--neon-pink);
+            color: white;
+        }
+
+        .delete-btn:hover {
+            box-shadow: 0 0 15px rgba(255, 0, 110, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* ===== TOURNAMENTS SECTION ===== */
+        .tournaments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .tournament-card {
+            background: linear-gradient(135deg, rgba(177, 0, 255, 0.1), rgba(255, 0, 110, 0.1));
+            border: 2px solid rgba(177, 0, 255, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .tournament-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(177, 0, 255, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tournament-card:hover {
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 40px rgba(177, 0, 255, 0.3);
+            transform: translateY(-15px);
+        }
+
+        .tournament-header {
+            margin-bottom: 1.5rem;
+            color: var(--neon-purple);
+        }
+
+        .tournament-title {
+            font-family: 'Audiowide', cursive;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .tournament-info {
+            display: flex;
+            justify-content: space-between;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .tournament-info span {
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .prize-pool {
+            background: rgba(177, 0, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--neon-purple);
+        }
+
+        .prize-amount {
+            color: var(--neon-purple);
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1.5rem;
+            position: relative;
+            z-index: 11;
+        }
+
+        .register-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(177, 0, 255, 0.5);
+        }
+
+        /* ===== BLOG SECTION ===== */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .blog-card {
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.05), rgba(0, 212, 255, 0.05));
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
+            transform: translateY(-15px);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #1a1a3e, #16213e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border-bottom: 2px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 65, 0.1) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-date {
+            color: var(--neon-green);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .blog-title {
+            font-family: 'Audiowide', cursive;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            letter-spacing: 0.5px;
+        }
+
+        .blog-excerpt {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .read-more {
+            color: var(--neon-green);
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .read-more:hover {
+            gap: 1.2rem;
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        /* ===== DASHBOARD SECTION ===== */
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .dashboard-card {
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.05), rgba(0, 212, 255, 0.05));
+            border: 2px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .dashboard-card h3 {
+            color: var(--neon-green);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-family: 'Audiowide', cursive;
+            letter-spacing: 1px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .stat-box {
+            background: rgba(10, 14, 39, 0.6);
+            border: 2px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: var(--neon-green);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .about-text h3 {
+            font-family: 'Audiowide', cursive;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--neon-green);
+            letter-spacing: 1px;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem;
+            background: rgba(0, 255, 65, 0.05);
+            border-left: 4px solid var(--neon-green);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: rgba(0, 255, 65, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+            transform: translateX(5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--neon-cyan);
+            min-width: 50px;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, #1a1a3e, #16213e);
+            border-radius: 20px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            border: 2px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-form {
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.05), rgba(0, 212, 255, 0.05));
+            border: 2px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group-contact {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group-contact label {
+            display: block;
+            margin-bottom: 0.7rem;
+            color: var(--neon-green);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .form-group-contact input,
+        .form-group-contact textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(10, 14, 39, 0.6);
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 8px;
+            font-family: 'Rajdhani', sans-serif;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group-contact input:focus,
+        .form-group-contact textarea:focus {
+            outline: none;
+            border-color: var(--neon-green);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+            background: rgba(0, 255, 65, 0.05);
+        }
+
+        .submit-btn-contact {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+            color: var(--darker-bg);
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 1rem;
+        }
+
+        .submit-btn-contact:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.6);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            padding: 1.5rem;
+            background: rgba(0, 255, 65, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid var(--neon-green);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(0, 255, 65, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--neon-cyan);
+            min-width: 50px;
+        }
+
+        .contact-text h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-text p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(0, 212, 255, 0.1));
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            color: var(--neon-green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.3rem;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+            color: var(--darker-bg);
+            box-shadow: 0 0 25px rgba(0, 255, 65, 0.5);
+            transform: translateY(-5px);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(5, 7, 15, 0.9));
+            border-top: 2px solid var(--border-color);
+            padding: 4rem 2rem 1rem;
+            margin-top: 5rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--neon-green), var(--neon-cyan));
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+            border-radius: 3px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            color: var(--neon-green);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            font-family: 'Audiowide', cursive;
+            letter-spacing: 1px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--neon-green);
+            transform: translateX(5px);
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .footer-bottom p {
+            margin-bottom: 1rem;
+        }
+
+        /* ===== GAME MODAL ===== */
+        .game-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 7, 15, 0.98);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .game-modal.active {
+            display: flex;
+        }
+
+        .game-container {
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.05), rgba(0, 212, 255, 0.05));
+            border: 2px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 50px rgba(0, 255, 65, 0.2);
+        }
+
+        .close-game {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--neon-green);
+            font-size: 2.5rem;
+            cursor: pointer;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .close-game:hover {
+            transform: rotate(90deg);
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-wrapper {
+                gap: 2rem;
+                flex-direction: column;
+            }
+
+            .hero-character {
+                width: 150px;
+                height: 250px;
+            }
+
+            .booking-container,
+            .about-content,
+            .contact-container,
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-center {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .nav-right {
+                width: 100%;
+                margin-top: 1rem;
+                gap: 1rem;
+            }
+
+            .search-bar {
+                width: 100%;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-buttons {
+                gap: 1rem;
+            }
+
+            .cta-btn {
+                padding: 0.9rem 2rem;
+                font-size: 0.95rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .games-grid,
+            .tournaments-grid,
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .time-slots {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 4rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .cta-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .game-card,
+            .tournament-card,
+            .blog-card {
+                padding: 1.5rem;
+            }
+
+            .booking-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .booking-actions {
+                width: 100%;
+                margin-top: 1rem;
+            }
+
+            .booking-actions .action-btn {
+                flex: 1;
+            }
+
+            .contact-container {
+                gap: 2rem;
+            }
+
+            .time-slots {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ===== NOTIFICATIONS ===== */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+            color: var(--darker-bg);
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            z-index: 5000;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--darker-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--neon-green);
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- PAGE LOADER -->
+    <div class="loader-wrapper">
+        <div class="loader-content">
+            <div class="loader-logo">🎮</div>
+            <div class="loader-spinner"></div>
+            <div class="loader-text">EliteGamix Loading...</div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">
+            <i class="fas fa-gamepad"></i>EliteGamix
+        </div>
+        
+        <div class="nav-center">
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="#home">Home <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="#home">Home eSports</a></li>
+                        <li><a href="#games">Home Streaming</a></li>
+                        <li><a href="#games">Home Video Game</a></li>
+                        <li><a href="#tournament">Home Tournament</a></li>
+                        <li><a href="#dashboard">Home Gamer</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="#about">About</a></li>
+                <li class="nav-item">
+                    <a href="#tournament">Tournament <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="#tournament">Tournament</a></li>
+                        <li><a href="#tournament">Tournament Details</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="#games">Games</a></li>
+                <li class="nav-item">
+                    <a href="#blog">Blog <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#blog">Blog Details</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-right">
+            <input type="text" class="search-bar" placeholder="Search games...">
+            <button class="live-btn">LIVE STREAMING</button>
+            <div class="auth-btns">
+                <button class="auth-btn" onclick="openLoginModal()">Login</button>
+                <button class="auth-btn" onclick="openSignupModal()">Signup</button>
+            </div>
+        </div>
+
+        <button class="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-wrapper">
+            <div class="hero-character left">
+                <div class="character-avatar">
+                    <span>🎮</span>
+                </div>
+            </div>
+
+            <div class="hero-content">
+                <h1 class="hero-title">Shaping the Future of Esports</h1>
+                <p class="hero-subtitle">World Class Esports & Gaming Platform</p>
+                <div class="hero-buttons">
+                    <button class="cta-btn primary" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+                        EXPLORE MORE
+                    </button>
+                    <button class="cta-btn secondary" onclick="document.getElementById('games').scrollIntoView({behavior:'smooth'})">
+                        BROWSE GAMES
+                    </button>
+                </div>
+            </div>
+
+            <div class="hero-character right">
+                <div class="character-avatar">
+                    <span>👾</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOGIN MODAL -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeLoginModal()">&times;</button>
+            <h2 class="modal-title">Login</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="submit-btn">LOGIN</button>
+            </form>
+            <div class="toggle-auth">
+                Don't have an account? <a onclick="toggleAuthModal()">Sign up here</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SIGNUP MODAL -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeSignupModal()">&times;</button>
+            <h2 class="modal-title">Sign Up</h2>
+            <form onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required placeholder="••••••••">
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirm">Confirm Password</label>
+                    <input type="password" id="signupConfirm" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="submit-btn">SIGN UP</button>
+            </form>
+            <div class="toggle-auth">
+                Already have an account? <a onclick="toggleAuthModal()">Login here</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- GAMES SECTION -->
+    <section id="games">
+        <div class="section-container">
+            <h2 class="section-title">PLAY ONLINE GAMES</h2>
+            <div class="games-grid">
+                <div class="game-card" onclick="playGame('tictactoe')">
+                    <div class="game-icon">🎮</div>
+                    <h3 class="game-name">TIC TAC TOE</h3>
+                    <p class="game-desc">Classic strategy game. Test your tactical skills against the AI.</p>
+                    <button class="play-btn">PLAY NOW</button>
+                </div>
+
+                <div class="game-card" onclick="playGame('snake')">
+                    <div class="game-icon">🐍</div>
+                    <h3 class="game-name">SNAKE GAME</h3>
+                    <p class="game-desc">Navigate the snake and consume pellets. How long can you grow?</p>
+                    <button class="play-btn">PLAY NOW</button>
+                </div>
+
+                <div class="game-card" onclick="playGame('memory')">
+                    <div class="game-icon">🧠</div>
+                    <h3 class="game-name">MEMORY MATCH</h3>
+                    <p class="game-desc">Test your memory by matching all pairs of cards.</p>
+                    <button class="play-btn">PLAY NOW</button>
+                </div>
+
+                <div class="game-card" onclick="playGame('flappy')">
+                    <div class="game-icon">🐦</div>
+                    <h3 class="game-name">FLAPPY BIRD</h3>
+                    <p class="game-desc">Navigate through obstacles and set high scores.</p>
+                    <button class="play-btn">PLAY NOW</button>
+                </div>
+
+                <div class="game-card" onclick="playGame('clicker')">
+                    <div class="game-icon">⚡</div>
+                    <h3 class="game-name">SPEED CLICKER</h3>
+                    <p class="game-desc">Click as fast as you can in 10 seconds!</p>
+                    <button class="play-btn">PLAY NOW</button>
+                </div>
+
+                <div class="game-card" onclick="playGame('2048')">
+                    <div class="game-icon">2️⃣</div>
+                    <h3 class="game-name">2048</h3>
+                    <p class="game-desc">Combine numbers to reach 2048. Mind-bending puzzle!</p>
+                    <button class="play-btn">PLAY NOW</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOKING SECTION -->
+    <section id="booking">
+        <div class="section-container">
+            <h2 class="section-title">BOOK YOUR GAMING ZONE</h2>
+            <div class="booking-container">
+                <div class="booking-form">
+                    <h3 style="color: var(--neon-green); margin-bottom: 2rem; font-family: 'Audiowide', cursive; letter-spacing: 1px;">MAKE A BOOKING</h3>
+                    <form onsubmit="addBooking(event)">
+                        <div class="form-group-booking">
+                            <label for="playerName">Player Name</label>
+                            <input type="text" id="playerName" required placeholder="Enter your name">
+                        </div>
+                        <div class="form-group-booking">
+                            <label for="gameSelect">Select Game</label>
+                            <select id="gameSelect" required>
+                                <option value="">Choose a game...</option>
+                                <option value="Tic Tac Toe">Tic Tac Toe</option>
+                                <option value="Snake Game">Snake Game</option>
+                                <option value="Memory Match">Memory Match</option>
+                                <option value="Flappy Bird">Flappy Bird</option>
+                                <option value="Speed Clicker">Speed Clicker</option>
+                                <option value="2048">2048</option>
+                            </select>
+                        </div>
+                        <div class="form-group-booking">
+                            <label for="bookingDate">Date</label>
+                            <input type="date" id="bookingDate" required>
+                        </div>
+                        <div class="form-group-booking">
+                            <label>Select Time Slot (Click to select)</label>
+                            <div class="time-slots" id="timeSlots"></div>
+                        </div>
+                        <button type="submit" class="submit-btn-booking">CONFIRM BOOKING</button>
+                    </form>
+                </div>
+
+                <div class="bookings-list">
+                    <h3 style="color: var(--neon-cyan); margin-bottom: 2rem; font-family: 'Audiowide', cursive; letter-spacing: 1px;">YOUR BOOKINGS</h3>
+                    <div id="bookingsList" style="max-height: 600px; overflow-y: auto;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DASHBOARD SECTION -->
+    <section id="dashboard">
+        <div class="section-container">
+            <h2 class="section-title">YOUR DASHBOARD</h2>
+            <div class="dashboard-container">
+                <div class="dashboard-card">
+                    <h3>GAMING STATISTICS</h3>
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-number" id="totalBookings">0</div>
+                            <div class="stat-label">Total Bookings</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number" id="gamesPlayed">12</div>
+                            <div class="stat-label">Games Played</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number" id="tournamentsJoined">3</div>
+                            <div class="stat-label">Tournaments Joined</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">89%</div>
+                            <div class="stat-label">Win Rate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>UPCOMING ACTIVITIES</h3>
+                    <div style="padding-top: 1rem;">
+                        <div class="booking-item" style="flex-direction: column; align-items: flex-start;">
+                            <div class="booking-info" style="width: 100%;">
+                                <h4>Next Booking: Snake Game</h4>
+                                <p>📅 Tomorrow at 3:00 PM</p>
+                                <p>⏱️ Duration: 1 Hour</p>
+                                <p>🎯 Zone: Premium Arena A</p>
+                            </div>
+                        </div>
+                        <div class="booking-item" style="flex-direction: column; align-items: flex-start; margin-top: 1rem;">
+                            <div class="booking-info" style="width: 100%;">
+                                <h4>Tournament: Pro Gaming League</h4>
+                                <p>📅 This Weekend</p>
+                                <p>🏆 Prize Pool: $5,000</p>
+                                <p>👥 Players: 256</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOURNAMENTS SECTION -->
+    <section id="tournament">
+        <div class="section-container">
+            <h2 class="section-title">UPCOMING TOURNAMENTS</h2>
+            <div class="tournaments-grid">
+                <div class="tournament-card">
+                    <div class="tournament-header">
+                        <h3 class="tournament-title">ESPORTS CHAMPIONSHIP 2024</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">Global Competition</p>
+                    </div>
+                    <div class="tournament-info">
+                        <span><i class="fas fa-calendar"></i> June 15-20, 2024</span>
+                        <span><i class="fas fa-users"></i> 256 Players</span>
+                    </div>
+                    <div class="prize-pool">
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">Prize Pool</p>
+                        <p class="prize-amount">$50,000</p>
+                    </div>
+                    <button class="register-btn" onclick="registerTournament(this)">REGISTER NOW</button>
+                </div>
+
+                <div class="tournament-card">
+                    <div class="tournament-header">
+                        <h3 class="tournament-title">WORLD GAMING LEAGUE</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">International Event</p>
+                    </div>
+                    <div class="tournament-info">
+                        <span><i class="fas fa-calendar"></i> July 10-25, 2024</span>
+                        <span><i class="fas fa-users"></i> 512 Players</span>
+                    </div>
+                    <div class="prize-pool">
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">Prize Pool</p>
+                        <p class="prize-amount">$100,000</p>
+                    </div>
+                    <button class="register-btn" onclick="registerTournament(this)">REGISTER NOW</button>
+                </div>
+
+                <div class="tournament-card">
+                    <div class="tournament-header">
+                        <h3 class="tournament-title">PRO GAMING LEAGUE</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">Regional Championship</p>
+                    </div>
+                    <div class="tournament-info">
+                        <span><i class="fas fa-calendar"></i> August 5-12, 2024</span>
+                        <span><i class="fas fa-users"></i> 128 Players</span>
+                    </div>
+                    <div class="prize-pool">
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">Prize Pool</p>
+                        <p class="prize-amount">$25,000</p>
+                    </div>
+                    <button class="register-btn" onclick="registerTournament(this)">REGISTER NOW</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOG SECTION -->
+    <section id="blog">
+        <div class="section-container">
+            <h2 class="section-title">GAMING NEWS & UPDATES</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-image">📱</div>
+                    <div class="blog-content">
+                        <p class="blog-date">June 10, 2024</p>
+                        <h3 class="blog-title">Mobile Gaming Revolution</h3>
+                        <p class="blog-excerpt">Discover the latest trends in mobile gaming and how they're reshaping the esports landscape. Learn about new technologies and gaming experiences.</p>
+                        <a href="#" class="read-more">READ MORE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">🏆</div>
+                    <div class="blog-content">
+                        <p class="blog-date">June 8, 2024</p>
+                        <h3 class="blog-title">Championship Finals Recap</h3>
+                        <p class="blog-excerpt">Exciting highlights from the recent championship finals. Witness incredible performances and unexpected comebacks from top players worldwide.</p>
+                        <a href="#" class="read-more">READ MORE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">🚀</div>
+                    <div class="blog-content">
+                        <p class="blog-date">June 5, 2024</p>
+                        <h3 class="blog-title">New Gaming Features Launch</h3>
+                        <p class="blog-excerpt">Explore our brand new gaming features including advanced matchmaking, ranking system, and social integrations for better gaming experience.</p>
+                        <a href="#" class="read-more">READ MORE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">💻</div>
+                    <div class="blog-content">
+                        <p class="blog-date">June 1, 2024</p>
+                        <h3 class="blog-title">Gaming PC Requirements</h3>
+                        <p class="blog-excerpt">Complete guide to choosing the right gaming PC specifications for optimal performance. Learn about GPUs, CPUs, and other essential components.</p>
+                        <a href="#" class="read-more">READ MORE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">🎯</div>
+                    <div class="blog-content">
+                        <p class="blog-date">May 28, 2024</p>
+                        <h3 class="blog-title">Competitive Gaming Tips</h3>
+                        <p class="blog-excerpt">Master strategies from professional gamers. Learn positioning, timing, and teamwork techniques to improve your competitive gaming skills.</p>
+                        <a href="#" class="read-more">READ MORE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">🌍</div>
+                    <div class="blog-content">
+                        <p class="blog-date">May 25, 2024</p>
+                        <h3 class="blog-title">Global Gaming Community</h3>
+                        <p class="blog-excerpt">Join millions of gamers worldwide. Connect, compete, and collaborate with players from different regions and gaming backgrounds.</p>
+                        <a href="#" class="read-more">READ MORE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <div class="section-container">
+            <h2 class="section-title">ABOUT ELITEGAMIX</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>The Ultimate Gaming Platform</h3>
+                    <p>EliteGamix is a premier online gaming zone reservation and management platform designed for competitive gamers and esports enthusiasts. We provide world-class gaming facilities, professional tournaments, and a thriving community for gamers of all levels.</p>
+                    <p>Our mission is to revolutionize the gaming experience by combining cutting-edge technology with professional esports infrastructure. Whether you're a casual gamer or aspiring pro, EliteGamix is your destination for excellence.</p>
+                    
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-gamepad"></i></div>
+                            <div>
+                                <strong>6+ Games</strong>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary);">Play diverse games</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-calendar"></i></div>
+                            <div>
+                                <strong>Easy Booking</strong>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary);">Reserve zones instantly</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-trophy"></i></div>
+                            <div>
+                                <strong>Tournaments</strong>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary);">Compete for prizes</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-users"></i></div>
+                            <div>
+                                <strong>Community</strong>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary);">Connect with gamers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <i class="fas fa-crown"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <div class="section-container">
+            <h2 class="section-title">GET IN TOUCH</h2>
+            <div class="contact-container">
+                <form class="contact-form" onsubmit="handleContact(event)">
+                    <div class="form-group-contact">
+                        <label for="contactName">Your Name</label>
+                        <input type="text" id="contactName" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group-contact">
+                        <label for="contactEmail">Email Address</label>
+                        <input type="email" id="contactEmail" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group-contact">
+                        <label for="contactSubject">Subject</label>
+                        <input type="text" id="contactSubject" required placeholder="Message subject">
+                    </div>
+                    <div class="form-group-contact">
+                        <label for="contactMessage">Message</label>
+                        <textarea id="contactMessage" required placeholder="Your message here..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn-contact">SEND MESSAGE</button>
+                </form>
+
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Location</h4>
+                            <p>123 Gaming Street, Tech City, TC 12345</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p>contact@elitegamix.com</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Hours</h4>
+                            <p>Mon-Sun: 10:00 AM - 12:00 AM</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem;">
+                        <h4 style="color: var(--neon-green); margin-bottom: 1.5rem; font-family: 'Audiowide', cursive; letter-spacing: 1px;">FOLLOW US ON SOCIAL MEDIA</h4>
+                        <div class="social-links">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-discord"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>EliteGamix</h4>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">The ultimate esports and gaming platform for competitive gamers worldwide.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#games">Games</a></li>
+                    <li><a href="#tournament">Tournaments</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#about">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Gaming Zones</h4>
+                <ul>
+                    <li><a href="#">Console Gaming</a></li>
+                    <li><a href="#">PC Gaming</a></li>
+                    <li><a href="#">Mobile Gaming</a></li>
+                    <li><a href="#">VR Gaming</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 EliteGamix. All rights reserved. | Crafted with <span style="color: var(--neon-pink);">❤</span> for Gamers</p>
+            <p style="font-size: 0.85rem;">Shaping the Future of Esports</p>
+        </div>
+    </footer>
+
+    <!-- GAME MODAL -->
+    <div class="game-modal" id="gameModal">
+        <div class="game-container">
+            <button class="close-game" onclick="closeGame()">&times;</button>
+            <div id="gameContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // ===== INITIALIZATION =====
+        let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+        let selectedTime = null;
+
+        // Initialize time slots
+        function initializeTimeSlots() {
+            const timeSlots = document.getElementById('timeSlots');
+            const times = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
+            
+            timeSlots.innerHTML = '';
+            times.forEach(time => {
+                const slot = document.createElement('div');
+                slot.className = 'time-slot';
+                slot.textContent = time;
+                slot.onclick = () => selectTimeSlot(slot, time);
+                timeSlots.appendChild(slot);
+            });
+            
+            updateBookingsDisplay();
+        }
+
+        // Select time slot
+        function selectTimeSlot(element, time) {
+            if (element.classList.contains('booked')) return;
+            
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            element.classList.add('selected');
+            selectedTime = time;
+        }
+
+        // Update bookings display
+        function updateBookingsDisplay() {
+            const bookingsList = document.getElementById('bookingsList');
+            const selectedDate = document.getElementById('bookingDate').value;
+            
+            if (bookings.length === 0) {
+                bookingsList.innerHTML = '<p style="color: var(--text-secondary); text-align: center;">No bookings yet. Make your first reservation!</p>';
+                return;
+            }
+            
+            bookingsList.innerHTML = bookings.map((booking, index) => `
+                <div class="booking-item">
+                    <div class="booking-info">
+                        <h4>${booking.name}</h4>
+                        <p>🎮 ${booking.game}</p>
+                        <p>📅 ${booking.date} at ${booking.time}</p>
+                    </div>
+                    <div class="booking-actions">
+                        <button class="action-btn edit-btn" onclick="editBooking(${index})">
+                            <i class="fas fa-edit"></i> EDIT
+                        </button>
+                        <button class="action-btn delete-btn" onclick="deleteBooking(${index})">
+                            <i class="fas fa-trash"></i> DELETE
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Mark booked slots
+            if (selectedDate) {
+                markBookedSlots(selectedDate);
+            }
+        }
+
+        // Mark booked time slots
+        function markBookedSlots(date) {
+            const timeSlots = document.querySelectorAll('.time-slot');
+            timeSlots.forEach(slot => {
+                const time = slot.textContent;
+                const isBooked = bookings.some(b => b.date === date && b.time === time);
+                if (isBooked) {
+                    slot.classList.add('booked');
+                } else {
+                    slot.classList.remove('booked');
+                }
+            });
+        }
+
+        // Add booking
+        function addBooking(e) {
+            e.preventDefault();
+            
+            if (!selectedTime) {
+                showNotification('Please select a time slot!', 'error');
+                return;
+            }
+            
+            const booking = {
+                name: document.getElementById('playerName').value,
+                game: document.getElementById('gameSelect').value,
+                date: document.getElementById('bookingDate').value,
+                time: selectedTime
+            };
+            
+            bookings.push(booking);
+            localStorage.setItem('bookings', JSON.stringify(bookings));
+            
+            e.target.reset();
+            selectedTime = null;
+            document.querySelectorAll('.time-slot').forEach(slot => slot.classList.remove('selected'));
+            updateBookingsDisplay();
+            
+            showNotification('Booking confirmed successfully! ✅');
+            updateDashboard();
+        }
+
+        // Delete booking
+        function deleteBooking(index) {
+            if (confirm('Are you sure you want to delete this booking?')) {
+                bookings.splice(index, 1);
+                localStorage.setItem('bookings', JSON.stringify(bookings));
+                updateBookingsDisplay();
+                showNotification('Booking deleted! 🗑️');
+                updateDashboard();
+            }
+        }
+
+        // Edit booking
+        function editBooking(index) {
+            const booking = bookings[index];
+            document.getElementById('playerName').value = booking.name;
+            document.getElementById('gameSelect').value = booking.game;
+            document.getElementById('bookingDate').value = booking.date;
+            
+            deleteBooking(index);
+            document.getElementById('booking').scrollIntoView({behavior: 'smooth'});
+        }
+
+        // Update dashboard
+        function updateDashboard() {
+            document.getElementById('totalBookings').textContent = bookings.length;
+        }
+
+        // ===== AUTHENTICATION ===== 
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('active');
+        }
+
+        function openSignupModal() {
+            document.getElementById('signupModal').classList.add('active');
+        }
+
+        function closeSignupModal() {
+            document.getElementById('signupModal').classList.remove('active');
+        }
+
+        function toggleAuthModal() {
+            document.getElementById('loginModal').classList.toggle('active');
+            document.getElementById('signupModal').classList.toggle('active');
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            showNotification(`Welcome back, ${email.split('@')[0]}! 🎮`);
+            closeLoginModal();
+            document.getElementById('loginModal').reset();
+        }
+
+        function handleSignup(e) {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirm = document.getElementById('signupConfirm').value;
+            
+            if (password !== confirm) {
+                showNotification('Passwords do not match!', 'error');
+                return;
+            }
+            
+            showNotification(`Welcome to EliteGamix, ${name}! 🎉`);
+            closeSignupModal();
+            document.getElementById('signupModal').reset();
+        }
+
+        // ===== GAMES =====
+        function playGame(game) {
+            const gameModal = document.getElementById('gameModal');
+            const gameContent = document.getElementById('gameContent');
+            
+            gameContent.innerHTML = '';
+            
+            switch(game) {
+                case 'tictactoe':
+                    createTicTacToe();
+                    break;
+                case 'snake':
+                    createSnakeGame();
+                    break;
+                case 'memory':
+                    createMemoryGame();
+                    break;
+                case 'flappy':
+                    createFlappyBird();
+                    break;
+                case 'clicker':
+                    createClickerGame();
+                    break;
+                case '2048':
+                    create2048Game();
+                    break;
+            }
+            
+            gameModal.classList.add('active');
+        }
+
+        function closeGame() {
+            document.getElementById('gameModal').classList.remove('active');
+        }
+
+        // Tic Tac Toe Game
+        function createTicTacToe() {
+            const gameContent = document.getElementById('gameContent');
+            let board = ['', '', '', '', '', '', '', '', ''];
+            let currentPlayer = 'X';
+            let gameOver = false;
+            
+            const html = `
+                <h2 style="text-align: center; color: var(--neon-green); margin-bottom: 2rem; font-family: 'Audiowide', cursive;">TIC TAC TOE</h2>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; max-width: 300px; margin: 0 auto;">
+                    ${board.map((cell, idx) => `
+                        <div onclick="playTicTacToe(${idx})" style="width: 80px; height: 80px; background: rgba(0, 255, 65, 0.1); border: 2px solid var(--neon-green); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; color: var(--neon-cyan);" id="cell-${idx}"></div>
+                    `).join('')}
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <p id="status" style="color: var(--neon-green); font-size: 1.1rem; font-weight: 600;">Player X's Turn</p>
+                    <button onclick="resetTicTacToe()" style="margin-top: 1rem; padding: 0.8rem 2rem; background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan)); color: var(--darker-bg); border: none; border-radius: 8px; font-weight: 700; cursor: pointer;">NEW GAME</button>
+                </div>
+            `;
+            gameContent.innerHTML = html;
+            
+            window.playTicTacToe = function(idx) {
+                const cell = document.getElementById(`cell-${idx}`);
+                if (cell.textContent !== '' || gameOver) return;
+                
+                board[idx] = currentPlayer;
+                cell.textContent = currentPlayer;
+                cell.style.color = currentPlayer === 'X' ? 'var(--neon-cyan)' : 'var(--neon-pink)';
+                
+                if (checkWinner(board, currentPlayer)) {
+                    document.getElementById('status').textContent = `Player ${currentPlayer} Wins! 🎉`;
+                    gameOver = true;
+                    return;
+                }
+                
+                if (board.every(cell => cell !== '')) {
+                    document.getElementById('status').textContent = "It's a Draw!";
+                    gameOver = true;
+                    return;
+                }
+                
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                document.getElementById('status').textContent = `Player ${currentPlayer}'s Turn`;
+            };
+            
+            window.resetTicTacToe = function() {
+                board = ['', '', '', '', '', '', '', '', ''];
+                currentPlayer = 'X';
+                gameOver = false;
+                createTicTacToe();
+            };
+        }
+
+        function checkWinner(board, player) {
+            const lines = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                [0, 4, 8], [2, 4, 6]
+            ];
+            return lines.some(line => line.every(idx => board[idx] === player));
+        }
+
+        // Snake Game
+        function createSnakeGame() {
+            const gameContent = document.getElementById('gameContent');
+            gameContent.innerHTML = `
+                <h2 style="text-align: center; color: var(--neon-green); margin-bottom: 2rem; font-family: 'Audiowide', cursive;">SNAKE GAME</h2>
+                <canvas id="snakeCanvas" width="400" height="400" style="background: rgba(0, 255, 65, 0.05); border: 2px solid var(--neon-green); border-radius: 8px; display: block; margin: 0 auto;"></canvas>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <p style="color: var(--neon-cyan); font-size: 1.1rem;">Score: <span id="snakeScore">0</span></p>
+                    <p style="color: var(--text-secondary);">Use Arrow Keys to move</p>
+                </div>
+            `;
+            
+            const canvas = document.getElementById('snakeCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            let snake = [{x: 200, y: 200}];
+            let food = {x: Math.random() * 380, y: Math.random() * 380};
+            let score = 0;
+            let dx = 5, dy = 0;
+            let nextDx = 5, nextDy = 0;
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowUp' && dy === 0) { nextDx = 0; nextDy = -5; }
+                if (e.key === 'ArrowDown' && dy === 0) { nextDx = 0; nextDy = 5; }
+                if (e.key === 'ArrowLeft' && dx === 0) { nextDx = -5; nextDy = 0; }
+                if (e.key === 'ArrowRight' && dx === 0) { nextDx = 5; nextDy = 0; }
+            });
+            
+            function draw() {
+                dx = nextDx;
+                dy = nextDy;
+                
+                ctx.fillStyle = 'rgba(5, 7, 15, 0.8)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                snake[0].x += dx;
+                snake[0].y += dy;
+                
+                if (snake[0].x === food.x && snake[0].y === food.y) {
+                    snake.push({});
+                    food = {x: Math.floor(Math.random() * 40) * 10, y: Math.floor(Math.random() * 40) * 10};
+                    score++;
+                    document.getElementById('snakeScore').textContent = score;
+                }
+                
+                ctx.fillStyle = 'var(--neon-green)';
+                snake.forEach(segment => {
+                    ctx.fillRect(segment.x, segment.y, 10, 10);
+                });
+                
+                ctx.fillStyle = 'var(--neon-pink)';
+                ctx.fillRect(food.x, food.y, 10, 10);
+                
+                if (snake[0].x < 0 || snake[0].x >= 400 || snake[0].y < 0 || snake[0].y >= 400) {
+                    alert('Game Over! Score: ' + score);
+                    closeGame();
+                    return;
+                }
+                
+                for (let i = 1; i < snake.length; i++) {
+                    if (snake[0].x === snake[i].x && snake[0].y === snake[i].y) {
+                        alert('Game Over! Score: ' + score);
+                        closeGame();
+                        return;
+                    }
+                }
+                
+                setTimeout(draw, 100);
+            }
+            draw();
+        }
+
+        // Memory Game
+        function createMemoryGame() {
+            const gameContent = document.getElementById('gameContent');
+            const cards = ['🎮', '🎮', '🎯', '🎯', '⚡', '⚡', '🏆', '🏆', '🎲', '🎲', '🌟', '🌟'];
+            let shuffled = cards.sort(() => Math.random() - 0.5);
+            
+            let flipped = [];
+            let matched = 0;
+            
+            gameContent.innerHTML = `
+                <h2 style="text-align: center; color: var(--neon-green); margin-bottom: 2rem; font-family: 'Audiowide', cursive;">MEMORY MATCH</h2>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 400px; margin: 0 auto;">
+                    ${shuffled.map((card, idx) => `
+                        <div class="memory-card" onclick="flipCard(${idx}, '${card}')" style="width: 80px; height: 80px; background: linear-gradient(135deg, rgba(0, 255, 65, 0.2), rgba(0, 212, 255, 0.2)); border: 2px solid var(--neon-green); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; transition: all 0.3s;" id="card-${idx}">?</div>
+                    `).join('')}
+                </div>
+                <p style="text-align: center; color: var(--neon-cyan); margin-top: 2rem;">Matched: <span id="matched">0</span>/6</p>
+            `;
+            
+            window.flipCard = function(idx, card) {
+                const cardEl = document.getElementById(`card-${idx}`);
+                if (cardEl.textContent !== '?' || flipped.length === 2) return;
+                
+                cardEl.textContent = card;
+                flipped.push({el: cardEl, card: card, idx: idx});
+                
+                if (flipped.length === 2) {
+                    if (flipped[0].card === flipped[1].card) {
+                        flipped = [];
+                        matched++;
+                        document.getElementById('matched').textContent = matched;
+                        if (matched === 6) {
+                            alert('You Won! 🎉');
+                            closeGame();
+                        }
+                    } else {
+                        setTimeout(() => {
+                            flipped[0].el.textContent = '?';
+                            flipped[1].el.textContent = '?';
+                            flipped = [];
+                        }, 500);
+                    }
+                }
+            };
+        }
+
+        // Flappy Bird Game
+        function createFlappyBird() {
+            const gameContent = document.getElementById('gameContent');
+            gameContent.innerHTML = `
+                <h2 style="text-align: center; color: var(--neon-green); margin-bottom: 2rem; font-family: 'Audiowide', cursive;">FLAPPY BIRD</h2>
+                <canvas id="flappyCanvas" width="400" height="500" style="background: linear-gradient(180deg, rgba(0, 212, 255, 0.1), rgba(0, 255, 65, 0.1)); border: 2px solid var(--neon-green); border-radius: 8px; display: block; margin: 0 auto;"></canvas>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <p style="color: var(--neon-cyan); font-size: 1.1rem;">Score: <span id="flappyScore">0</span></p>
+                    <p style="color: var(--text-secondary);">Click or Space to Flap</p>
+                </div>
+            `;
+            
+            const canvas = document.getElementById('flappyCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            let bird = {x: 50, y: 250, width: 20, height: 20, velocity: 0};
+            let pipes = [];
+            let score = 0;
+            let gameOver = false;
+            
+            function drawBird() {
+                ctx.fillStyle = 'var(--neon-pink)';
+                ctx.fillRect(bird.x, bird.y, bird.width, bird.height);
+            }
+            
+            function drawPipes() {
+                pipes.forEach(pipe => {
+                    ctx.fillStyle = 'var(--neon-green)';
+                    ctx.fillRect(pipe.x, 0, pipe.width, pipe.topHeight);
+                    ctx.fillRect(pipe.x, pipe.topHeight + pipe.gap, pipe.width, canvas.height);
+                });
+            }
+            
+            function updateGame() {
+                if (gameOver) return;
+                
+                bird.velocity += 0.5;
+                bird.y += bird.velocity;
+                
+                if (bird.y + bird.height > canvas.height || bird.y < 0) {
+                    gameOver = true;
+                }
+                
+                pipes.forEach((pipe, idx) => {
+                    pipe.x -= 5;
+                    
+                    if (bird.x < pipe.x + pipe.width && bird.x + bird.width > pipe.x) {
+                        if (bird.y < pipe.topHeight || bird.y + bird.height > pipe.topHeight + pipe.gap) {
+                            gameOver = true;
+                        }
+                    }
+                    
+                    if (pipe.x + pipe.width === bird.x) {
+                        score++;
+                        document.getElementById('flappyScore').textContent = score;
+                    }
+                    
+                    if (pipe.x < -pipe.width) {
+                        pipes.splice(idx, 1);
+                    }
+                });
+                
+                if (pipes.length === 0 || pipes[pipes.length - 1].x < 300) {
+                    pipes.push({x: 400, width: 60, topHeight: Math.random() * 200 + 50, gap: 150});
+                }
+                
+                ctx.fillStyle = 'rgba(5, 7, 15, 0.8)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                drawBird();
+                drawPipes();
+                
+                if (gameOver) {
+                    alert('Game Over! Score: ' + score);
+                    closeGame();
+                } else {
+                    requestAnimationFrame(updateGame);
+                }
+            }
+            
+            function flap() {
+                bird.velocity = -10;
+            }
+            
+            document.addEventListener('click', flap);
+            document.addEventListener('keydown', (e) => {
+                if (e.code === 'Space') {
+                    e.preventDefault();
+                    flap();
+                }
+            });
+            
+            updateGame();
+        }
+
+        // Speed Clicker Game
+        function createClickerGame() {
+            const gameContent = document.getElementById('gameContent');
+            let clicks = 0;
+            let timeLeft = 10;
+            
+            gameContent.innerHTML = `
+                <h2 style="text-align: center; color: var(--neon-green); margin-bottom: 2rem; font-family: 'Audiowide', cursive;">SPEED CLICKER</h2>
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <p style="color: var(--neon-cyan); font-size: 1.2rem; margin-bottom: 1rem;">Time: <span id="timer">10</span>s</p>
+                    <button id="clickBtn" onclick="incrementClicks()" style="width: 200px; height: 200px; border-radius: 50%; background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan)); border: 3px solid var(--neon-green); font-size: 3rem; color: var(--darker-bg); cursor: pointer; font-weight: 700; transition: all 0.1s; box-shadow: 0 0 30px var(--neon-green);">👆</button>
+                </div>
+                <p style="text-align: center; color: var(--neon-green); font-size: 1.5rem;">Clicks: <span id="clickCount">0</span></p>
+            `;
+            
+            const clickBtn = document.getElementById('clickBtn');
+            
+            window.incrementClicks = () => {
+                clicks++;
+                document.getElementById('clickCount').textContent = clicks;
+                clickBtn.style.transform = 'scale(0.95)';
+                setTimeout(() => clickBtn.style.transform = 'scale(1)', 100);
+                playSound();
+            };
+            
+            const countDown = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').textContent = timeLeft;
+                if (timeLeft === 0) {
+                    clearInterval(countDown);
+                    clickBtn.disabled = true;
+                    alert(`Game Over! You clicked ${clicks} times!`);
+                    closeGame();
+                }
+            }, 1000);
+        }
+
+        // 2048 Game (Simplified)
+        function create2048Game() {
+            const gameContent = document.getElementById('gameContent');
+            gameContent.innerHTML = `
+                <h2 style="text-align: center; color: var(--neon-green); margin-bottom: 2rem; font-family: 'Audiowide', cursive;">2048</h2>
+                <div style="max-width: 320px; margin: 0 auto;">
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; background: rgba(0, 255, 65, 0.1); padding: 0.5rem; border-radius: 8px;">
+                        ${Array(16).fill(0).map((_, i) => `
+                            <div style="aspect-ratio: 1; background: rgba(0, 212, 255, 0.1); border: 2px solid var(--border-color); border-radius: 5px; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--neon-green);" id="tile-${i}"></div>
+                        `).join('')}
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <p style="color: var(--neon-cyan); font-size: 1.1rem;">Score: <span id="game2048Score">0</span></p>
+                    <p style="color: var(--text-secondary);">Use Arrow Keys to move</p>
+                    <button onclick="closeGame()" style="margin-top: 1rem; padding: 0.8rem 2rem; background: var(--neon-pink); color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer;">CLOSE GAME</button>
+                </div>
+            `;
+        }
+
+        // ===== TOURNAMENTS =====
+        function registerTournament(btn) {
+            btn.textContent = '✓ REGISTERED';
+            btn.style.background = 'rgba(0, 255, 65, 0.3)';
+            btn.style.borderColor = 'var(--neon-green)';
+            btn.disabled = true;
+            showNotification('Tournament registration successful! 🏆');
+        }
+
+        // ===== CONTACT FORM =====
+        function handleContact(e) {
+            e.preventDefault();
+            const name = document.getElementById('contactName').value;
+            showNotification(`Thank you ${name}, we'll get back to you soon! 📧`);
+            e.target.reset();
+        }
+
+        // ===== NOTIFICATIONS =====
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // ===== SOUND =====
+        function playSound() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = 800;
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.1);
+        }
+
+        // ===== INITIALIZATION ON PAGE LOAD =====
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeTimeSlots();
+            updateDashboard();
+            
+            document.getElementById('bookingDate').addEventListener('change', () => {
+                updateBookingsDisplay();
+            });
+        });
+
+        // Close modals on background click
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
