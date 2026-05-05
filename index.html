@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EliteGamix - Professional Esports Gaming Platform</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;700&family=Audiowide&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;700&family=Audiowide&display=swap"
+        rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -86,18 +89,37 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         @keyframes fadeOut {
-            0% { opacity: 1; visibility: visible; }
-            100% { opacity: 0; visibility: hidden; }
+            0% {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
         }
 
         /* ===== NAVBAR ===== */
@@ -156,7 +178,7 @@
             position: relative;
         }
 
-        .nav-item > a {
+        .nav-item>a {
             color: var(--text-primary);
             text-decoration: none;
             font-weight: 500;
@@ -168,7 +190,7 @@
             gap: 0.5rem;
         }
 
-        .nav-item > a:hover {
+        .nav-item>a:hover {
             color: var(--neon-green);
             text-shadow: 0 0 10px var(--neon-green);
             background: rgba(0, 255, 65, 0.1);
@@ -278,8 +300,17 @@
         }
 
         @keyframes blink {
-            0%, 50%, 100% { opacity: 1; }
-            25%, 75% { opacity: 0.3; }
+
+            0%,
+            50%,
+            100% {
+                opacity: 1;
+            }
+
+            25%,
+            75% {
+                opacity: 0.3;
+            }
         }
 
         .auth-btns {
@@ -324,6 +355,18 @@
             align-items: center;
             justify-content: center;
             padding: 2rem;
+
+
+        }
+
+        .herobg {
+            background-image: url(hero-bg1-1.png);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+
+
         }
 
         .hero::before {
@@ -336,6 +379,7 @@
             top: -200px;
             left: -200px;
             animation: float 8s ease-in-out infinite;
+
         }
 
         .hero::after {
@@ -351,10 +395,23 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-30px) translateX(20px); }
-            50% { transform: translateY(-60px) translateX(0); }
-            75% { transform: translateY(-30px) translateX(-20px); }
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+
+            25% {
+                transform: translateY(-30px) translateX(20px);
+            }
+
+            50% {
+                transform: translateY(-60px) translateX(0);
+            }
+
+            75% {
+                transform: translateY(-30px) translateX(-20px);
+            }
         }
 
         .hero-wrapper {
@@ -366,6 +423,7 @@
             gap: 4rem;
             max-width: 1200px;
             width: 100%;
+
         }
 
         .hero-character {
@@ -384,8 +442,15 @@
         }
 
         @keyframes characterBounce {
-            0%, 100% { transform: translateY(0) rotate(-2deg); }
-            50% { transform: translateY(-30px) rotate(2deg); }
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-2deg);
+            }
+
+            50% {
+                transform: translateY(-30px) rotate(2deg);
+            }
         }
 
         .character-avatar {
@@ -401,6 +466,7 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 0 30px rgba(0, 255, 65, 0.3), inset 0 0 30px rgba(0, 255, 65, 0.1);
+
         }
 
         .character-avatar::before {
@@ -412,8 +478,13 @@
         }
 
         @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
         }
 
         .hero-content {
@@ -437,8 +508,15 @@
         }
 
         @keyframes glowPulse {
-            0%, 100% { filter: drop-shadow(0 0 20px rgba(0, 255, 65, 0.5)); }
-            50% { filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.5)); }
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 20px rgba(0, 255, 65, 0.5));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.5));
+            }
         }
 
         .hero-subtitle {
@@ -515,8 +593,13 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .modal-content {
@@ -537,6 +620,7 @@
                 opacity: 0;
                 transform: translateY(50px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -721,11 +805,104 @@
             opacity: 1;
         }
 
+
         .game-icon {
-            font-size: 5rem;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 120px;
+            height: 120px;
+            margin-left: auto;
+            margin-right: auto;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
+
+        .game-board {
+            font-size: 80px;
+            font-weight: bold;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            width: 100px;
+            height: 100px;
+        }
+
+        .cell {
+            background: white;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #667eea;
+        }
+
+        /* Snake */
+        .snake-board {
+            grid-template-columns: repeat(4, 1fr);
+            width: 80px;
+            gap: 3px;
+        }
+
+        .snake-cell {
+            width: 18px;
+            height: 18px;
+            border-radius: 2px;
+        }
+
+        .snake-head {
+            background: white;
+        }
+
+        .snake-body {
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Memory Match */
+        .memory-board {
+            grid-template-columns: repeat(3, 1fr);
+            width: 80px;
+            gap: 3px;
+        }
+
+        .memory-cell {
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+
+        /* Spider Clicker */
+        .spider-emoji {
+            font-size: 60px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* 2048 */
+        .board-2048 {
+            grid-template-columns: repeat(2, 1fr);
+            width: 50px;
+            gap: 3px;
+        }
+
+
 
         .game-name {
             font-family: 'Audiowide', cursive;
@@ -762,6 +939,296 @@
         .play-btn:hover {
             transform: scale(1.08);
             box-shadow: 0 0 25px rgba(0, 255, 65, 0.6);
+        }
+
+        /* ===== PS5 REALISTIC GAME CARDS ===== */
+        .ps5-section-header {
+            text-align: center;
+            margin: 5rem 0 1rem;
+        }
+
+        .ps5-label {
+            display: inline-block;
+            color: var(--neon-green);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        .ps5-section-title {
+            font-family: 'Audiowide', cursive;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .ps5-section-title span {
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .ps5-games-slider {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding: 2rem 0.5rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--neon-green) transparent;
+            scroll-snap-type: x mandatory;
+        }
+
+        .ps5-games-slider::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .ps5-games-slider::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .ps5-games-slider::-webkit-scrollbar-thumb {
+            background: var(--neon-green);
+            border-radius: 3px;
+        }
+
+        .ps5-game-card {
+            flex: 0 0 280px;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            scroll-snap-align: start;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .ps5-game-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan), var(--neon-purple));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .ps5-game-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 255, 65, 0.3);
+        }
+
+        .ps5-game-card:hover::before {
+            opacity: 1;
+        }
+
+        .ps5-game-img {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+        }
+
+        .ps5-game-card:hover .ps5-game-img {
+            transform: scale(1.05);
+        }
+
+        /* Fallback gradient backgrounds for each game */
+        .ps5-game-img-fallback {
+            width: 100%;
+            height: 360px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ps5-game-img-fallback::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(200%);
+            }
+        }
+
+        .ps5-game-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(5, 7, 15, 0.98) 0%, rgba(5, 7, 15, 0.7) 50%, transparent 100%);
+            padding: 2rem 1.5rem 1.5rem;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+
+        .ps5-game-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            margin-bottom: 0.8rem;
+        }
+
+        .ps5-game-badge.new {
+            background: linear-gradient(135deg, #00ff41, #00d4ff);
+            color: #05070f;
+        }
+
+        .ps5-game-badge.hot {
+            background: linear-gradient(135deg, #ff6b35, #ff006e);
+        }
+
+        .ps5-game-badge.free {
+            background: linear-gradient(135deg, #00d4ff, #b100ff);
+        }
+
+        .ps5-game-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+
+        .ps5-game-genre {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .ps5-game-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .ps5-game-price {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+
+        .ps5-price-free {
+            color: var(--neon-green);
+            font-size: 1.1rem;
+        }
+
+        .ps5-price-paid {
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .ps5-price-paid .original {
+            color: var(--text-secondary);
+            text-decoration: line-through;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+
+        .ps5-price-paid .discounted {
+            color: var(--neon-green);
+        }
+
+        .ps5-play-btn {
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+            color: var(--darker-bg);
+            border: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            z-index: 11;
+            position: relative;
+        }
+
+        .ps5-play-btn:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.7);
+            transform: scale(1.05);
+        }
+
+        .ps5-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: #FFD700;
+            font-size: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ps5-rating span {
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+        }
+
+        /* Platform badge */
+        .ps5-platform {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(5, 7, 15, 0.9);
+            border: 1px solid rgba(0, 212, 255, 0.4);
+            border-radius: 8px;
+            padding: 0.4rem 0.7rem;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--neon-cyan);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Entry fee tag */
+        .entry-fee-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(5, 7, 15, 0.85);
+            border: 1px solid var(--neon-green);
+            border-radius: 6px;
+            padding: 0.35rem 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--neon-green);
+            backdrop-filter: blur(10px);
         }
 
         /* ===== BOOKING SECTION ===== */
@@ -1682,6 +2149,7 @@
                 transform: translateX(400px);
                 opacity: 0;
             }
+
             to {
                 transform: translateX(0);
                 opacity: 1;
@@ -1708,6 +2176,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- PAGE LOADER -->
     <div class="loader-wrapper">
@@ -1723,7 +2192,7 @@
         <div class="logo">
             <i class="fas fa-gamepad"></i>EliteGamix
         </div>
-        
+
         <div class="nav-center">
             <ul class="nav-links">
                 <li class="nav-item">
@@ -1771,34 +2240,40 @@
     </nav>
 
     <!-- HERO SECTION -->
-    <section class="hero" id="home">
-        <div class="hero-wrapper">
-            <div class="hero-character left">
-                <div class="character-avatar">
-                    <span>🎮</span>
-                </div>
-            </div>
+    <div class="herobg">
+        <section class="hero" id="home">
+            <div class="hero-wrapper">
+                <div class="hero-character left">
 
-            <div class="hero-content">
-                <h1 class="hero-title">Shaping the Future of Esports</h1>
-                <p class="hero-subtitle">World Class Esports & Gaming Platform</p>
-                <div class="hero-buttons">
-                    <button class="cta-btn primary" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
-                        EXPLORE MORE
-                    </button>
-                    <button class="cta-btn secondary" onclick="document.getElementById('games').scrollIntoView({behavior:'smooth'})">
-                        BROWSE GAMES
-                    </button>
-                </div>
-            </div>
+                    <img src="hero-1-1.png" alt="">
 
-            <div class="hero-character right">
-                <div class="character-avatar">
-                    <span>👾</span>
+
                 </div>
+
+
+                <div class="hero-content">
+                    <h1 class="hero-title">Shaping the Future of Esports</h1>
+                    <p class="hero-subtitle">World Class Esports & Gaming Platform</p>
+                    <div class="hero-buttons">
+                        <button class="cta-btn primary"
+                            onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+                            EXPLORE MORE
+                        </button>
+                        <button class="cta-btn secondary"
+                            onclick="document.getElementById('games').scrollIntoView({behavior:'smooth'})">
+                            BROWSE GAMES
+                        </button>
+                    </div>
+                </div>
+
+                <div class="hero-character right">
+
+                    <img src="hero-1-2.png" alt="">
+                </div>
+
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <!-- LOGIN MODAL -->
     <div class="modal" id="loginModal">
@@ -1858,21 +2333,64 @@
             <h2 class="section-title">PLAY ONLINE GAMES</h2>
             <div class="games-grid">
                 <div class="game-card" onclick="playGame('tictactoe')">
-                    <div class="game-icon">🎮</div>
+                    <div class="game-icon">
+                        <div class="game-board">
+                            <div class="cell">X</div>
+                            <div class="cell">O</div>
+                            <div class="cell">X</div>
+                            <div class="cell">O</div>
+                            <div class="cell">X</div>
+                            <div class="cell">O</div>
+                            <div class="cell">X</div>
+                            <div class="cell">O</div>
+                            <div class="cell"></div>
+                        </div>
+                    </div>
                     <h3 class="game-name">TIC TAC TOE</h3>
                     <p class="game-desc">Classic strategy game. Test your tactical skills against the AI.</p>
                     <button class="play-btn">PLAY NOW</button>
                 </div>
 
                 <div class="game-card" onclick="playGame('snake')">
-                    <div class="game-icon">🐍</div>
+                    <div class="game-icon">
+                        <div class="game-board snake-board">
+                            <div class="snake-cell snake-head"></div>
+                            <div class="snake-cell snake-body"></div>
+                            <div class="snake-cell snake-body"></div>
+                            <div class="snake-cell" style="background: #FFD700;"></div>
+                            <div class="snake-cell"></div>
+                            <div class="snake-cell"></div>
+                            <div class="snake-cell"></div>
+                            <div class="snake-cell"></div>
+                            <div class="snake-cell"></div>
+                            <div class="snake-cell"></div>
+                            <div class="snake-cell"></div>
+                            <div class="snake-cell"></div>
+                            <div class="snake-cell"></div>
+                            <div class="snake-cell"></div>
+                            <div class="snake-cell"></div>
+                            <div class="snake-cell"></div>
+                        </div>
+                    </div>
                     <h3 class="game-name">SNAKE GAME</h3>
                     <p class="game-desc">Navigate the snake and consume pellets. How long can you grow?</p>
                     <button class="play-btn">PLAY NOW</button>
                 </div>
 
                 <div class="game-card" onclick="playGame('memory')">
-                    <div class="game-icon">🧠</div>
+                    <div class="game-icon">
+                        <div class="game-board memory-board">
+                            <div class="memory-cell">🎴</div>
+                            <div class="memory-cell">🎴</div>
+                            <div class="memory-cell">🎴</div>
+                            <div class="memory-cell">🎴</div>
+                            <div class="memory-cell">🎴</div>
+                            <div class="memory-cell">⭐</div>
+                            <div class="memory-cell">🎴</div>
+                            <div class="memory-cell">🎴</div>
+                            <div class="memory-cell">🎴</div>
+                        </div>
+                    </div>
                     <h3 class="game-name">MEMORY MATCH</h3>
                     <p class="game-desc">Test your memory by matching all pairs of cards.</p>
                     <button class="play-btn">PLAY NOW</button>
@@ -1893,7 +2411,10 @@
                 </div>
 
                 <div class="game-card" onclick="playGame('2048')">
-                    <div class="game-icon">2️⃣</div>
+                    <div class="game-icon">
+                        <div class="game-board board-2048">
+                        </div>
+                    </div>
                     <h3 class="game-name">2048</h3>
                     <p class="game-desc">Combine numbers to reach 2048. Mind-bending puzzle!</p>
                     <button class="play-btn">PLAY NOW</button>
@@ -1902,13 +2423,279 @@
         </div>
     </section>
 
+    <!-- ===== PS5 REALISTIC GAMES SECTION ===== -->
+
+    <div class="ps5-section-header">
+        <p class="ps5-label"># Releases The Latest Game</p>
+        <h2 class="ps5-section-title">Game On, Power Up, <span>Win Big!</span></h2>
+    </div>
+
+    <div class="ps5-games-slider">
+
+        <!-- Card 1: Net Remaining Monies (FREE) -->
+        <div class="ps5-game-card">
+            <div class="ps5-game-img-fallback" style="background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);">
+                <div
+                    style="position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 360%22><defs><radialGradient id=%22g%22 cx=%2250%25%22 cy=%2240%25%22><stop offset=%220%25%22 stop-color=%22%238B5CF6%22 stop-opacity=%220.8%22/><stop offset=%22100%25%22 stop-color=%22%23060818%22 stop-opacity=%221%22/></radialGradient></defs><rect width=%22300%22 height=%22360%22 fill=%22url(%23g)%22/></svg>') center/cover;">
+                </div>
+                <img src="https://media.wired.com/photos/6348589a04d20e5d7c550aa8/1:1/w_1263,h_1263,c_limit/The-Last-of-Us-Makes-Players-Feel-Really-Bad.-That%E2%80%99s-Great-Games-Culture.jpg"
+                    alt="">
+
+                <span
+                    style="position:relative;z-index:2;font-family:'Orbitron',sans-serif;font-size:0.7rem;color:#c4b5fd;letter-spacing:2px;margin-top:0.5rem;">NET
+                    REMAINING MONIES</span>
+            </div>
+            <div class="entry-fee-tag">Entry: FREE</div>
+            <div class="ps5-platform">PS5</div>
+            <div class="ps5-game-overlay">
+                <div class="ps5-game-badge free">✦ Free to Play</div>
+                <div class="ps5-rating">★★★★☆ <span>(2.4k reviews)</span></div>
+                <h3 class="ps5-game-title">Net Remaining Monies</h3>
+                <p class="ps5-game-genre">Action RPG • Open World</p>
+                <div class="ps5-game-footer">
+                    <div class="ps5-game-price"><span class="ps5-price-free">FREE</span></div>
+                    <button class="ps5-play-btn" onclick="showNotification('Launching Net Remaining Monies! 🎮')">PLAY
+                        FREE</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: Call of Duty Black Ops -->
+        <div class="ps5-game-card">
+            <div class="ps5-game-img-fallback" style="background: linear-gradient(135deg, #1a0000, #3d0000, #1a1a1a);">
+                <div
+                    style="position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 360%22><defs><radialGradient id=%22g%22 cx=%2250%25%22 cy=%2250%25%22><stop offset=%220%25%22 stop-color=%22%22 stop-opacity=%221%22/><stop offset=%22100%25%22 stop-color=%22%23000%22 stop-opacity=%221%22/></radialGradient></defs><rect width=%22300%22 height=%22360%22 fill=%22%23111%22/></svg>') center/cover;">
+                </div>
+                <img src="https://upload.wikimedia.org/wikipedia/en/0/02/CoD_Black_Ops_cover.png" alt="">
+
+                <span
+                    style="position:relative;z-index:2;font-family:'Orbitron',sans-serif;font-size:0.65rem;color:#fca5a5;letter-spacing:2px;margin-top:0.5rem;">CALL
+                    OF DUTY</span>
+            </div>
+            <div class="entry-fee-tag">Entry: $10.00</div>
+            <div class="ps5-platform">PS5</div>
+            <div class="ps5-game-overlay">
+                <div class="ps5-game-badge hot">🔥 Trending</div>
+                <div class="ps5-rating">★★★★★ <span>(18.7k reviews)</span></div>
+                <h3 class="ps5-game-title">Duty Black Ops</h3>
+                <p class="ps5-game-genre">FPS • Tactical Shooter</p>
+                <div class="ps5-game-footer">
+                    <div class="ps5-game-price">
+                        <span class="ps5-price-paid">
+                            <span class="original">$69.99</span>
+                            <span class="discounted">$10.00</span>
+                        </span>
+                    </div>
+                    <button class="ps5-play-btn" onclick="showNotification('Registering for Duty Black Ops! 🎯')">JOIN
+                        NOW</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: League of Legends -->
+        <div class="ps5-game-card">
+            <div class="ps5-game-img-fallback"
+                style="background: linear-gradient(135deg, #001122, #003366, #0066cc, #001122);">
+                <div
+                    style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(0,180,255,0.3) 0%,transparent 70%);">
+                </div>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxSzBQkHFKIAeVXjWNUNoofOSnYmSeyLVBlA&s"
+                    alt="">
+                <span
+                    style="position:relative;z-index:2;font-family:'Orbitron',sans-serif;font-size:0.65rem;color:#7dd3fc;letter-spacing:2px;margin-top:0.5rem;">LEAGUE
+                    OF LEGENDS</span>
+            </div>
+            <div class="entry-fee-tag">Entry: $10.00</div>
+            <div class="ps5-platform">PS5</div>
+            <div class="ps5-game-overlay">
+                <div class="ps5-game-badge new">✨ New Season</div>
+                <div class="ps5-rating">★★★★★ <span>(45.2k reviews)</span></div>
+                <h3 class="ps5-game-title">League of Legends</h3>
+                <p class="ps5-game-genre">MOBA • Strategy</p>
+                <div class="ps5-game-footer">
+                    <div class="ps5-game-price">
+                        <span class="ps5-price-paid">
+                            <span class="discounted">$10.00</span>
+                        </span>
+                    </div>
+                    <button class="ps5-play-btn" onclick="showNotification('Joining League of Legends! ⚔️')">JOIN
+                        NOW</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4: The Hunter Killer -->
+        <div class="ps5-game-card">
+            <div class="ps5-game-img-fallback" style="background: linear-gradient(135deg, #1a0011, #4a0020, #1a0011);">
+                <div
+                    style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(220,38,38,0.35) 0%,transparent 70%);">
+                </div>
+                <img src="https://resizing.flixster.com/2uA6w0TnITTbKydsHr9HkwcIxHk=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzL2Q0NDcwNzZmLThmZGUtNDdhNi1hMjBjLWRmMDdjMmMzMWUyNS53ZWJw"
+                    alt="">
+                <span
+                    style="position:relative;z-index:2;font-family:'Orbitron',sans-serif;font-size:0.65rem;color:#fca5a5;letter-spacing:2px;margin-top:0.5rem;">THE
+                    HUNTER KILLER</span>
+            </div>
+            <div class="entry-fee-tag">Entry: $10.00</div>
+            <div class="ps5-platform">PS5</div>
+            <div class="ps5-game-overlay">
+                <div class="ps5-game-badge hot">💀 Dark Mode</div>
+                <div class="ps5-rating">★★★★☆ <span>(9.1k reviews)</span></div>
+                <h3 class="ps5-game-title">The Hunter Killer</h3>
+                <p class="ps5-game-genre">Survival Horror • Stealth</p>
+                <div class="ps5-game-footer">
+                    <div class="ps5-game-price">
+                        <span class="ps5-price-paid">
+                            <span class="original">$49.99</span>
+                            <span class="discounted">$10.00</span>
+                        </span>
+                    </div>
+                    <button class="ps5-play-btn" onclick="showNotification('Entering The Hunter Killer! 💀')">JOIN
+                        NOW</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 5: God of War Ragnarök -->
+        <div class="ps5-game-card">
+            <div class="ps5-game-img-fallback" style="background: linear-gradient(135deg, #0d0d1a, #1a0d0d, #2d1515);">
+                <div
+                    style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(255,100,0,0.3) 0%,transparent 65%);">
+                </div>
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/ee/God_of_War_Ragnar%C3%B6k_cover.jpg/250px-God_of_War_Ragnar%C3%B6k_cover.jpg"
+                    alt="">
+                <span
+                    style="position:relative;z-index:2;font-family:'Orbitron',sans-serif;font-size:0.65rem;color:#fdba74;letter-spacing:2px;margin-top:0.5rem;">GOD
+                    OF WAR</span>
+            </div>
+            <div class="entry-fee-tag">Entry: $15.00</div>
+            <div class="ps5-platform">PS5</div>
+            <div class="ps5-game-overlay">
+                <div class="ps5-game-badge" style="background:linear-gradient(135deg,#ff6400,#ff0040);">🏆 PS5
+                    Exclusive</div>
+                <div class="ps5-rating">★★★★★ <span>(89.4k reviews)</span></div>
+                <h3 class="ps5-game-title">God of War Ragnarök</h3>
+                <p class="ps5-game-genre">Action Adventure • Norse</p>
+                <div class="ps5-game-footer">
+                    <div class="ps5-game-price">
+                        <span class="ps5-price-paid">
+                            <span class="original">$79.99</span>
+                            <span class="discounted">$15.00</span>
+                        </span>
+                    </div>
+                    <button class="ps5-play-btn" onclick="showNotification('Entering God of War! ⚡')">JOIN
+                        NOW</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 6: Spider-Man 2 -->
+        <div class="ps5-game-card">
+            <div class="ps5-game-img-fallback" style="background: linear-gradient(135deg, #0a0020, #1a003a, #0d001f);">
+                <div
+                    style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(139,0,255,0.4) 0%,rgba(255,0,64,0.2) 50%,transparent 70%);">
+                </div>
+                <img src="https://image.api.playstation.com/vulcan/ap/rnd/202306/1219/60eca3ac155247e21850c7d075d01ebf0f3f5dbf19ccd2a1.jpg"
+                    alt="">
+                <span
+                    style="position:relative;z-index:2;font-family:'Orbitron',sans-serif;font-size:0.65rem;color:#d8b4fe;letter-spacing:2px;margin-top:0.5rem;">MARVEL'S
+                    SPIDER-MAN 2</span>
+            </div>
+            <div class="entry-fee-tag">Entry: $12.00</div>
+            <div class="ps5-platform">PS5</div>
+            <div class="ps5-game-overlay">
+                <div class="ps5-game-badge new">🕷️ Symbiote Edition</div>
+                <div class="ps5-rating">★★★★★ <span>(62.1k reviews)</span></div>
+                <h3 class="ps5-game-title">Marvel's Spider-Man 2</h3>
+                <p class="ps5-game-genre">Action • Open World NYC</p>
+                <div class="ps5-game-footer">
+                    <div class="ps5-game-price">
+                        <span class="ps5-price-paid">
+                            <span class="original">$69.99</span>
+                            <span class="discounted">$12.00</span>
+                        </span>
+                    </div>
+                    <button class="ps5-play-btn" onclick="showNotification('Joining Spider-Man 2! 🕷️')">JOIN
+                        NOW</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 7: Mortal Kombat 1 -->
+        <div class="ps5-game-card">
+            <div class="ps5-game-img-fallback" style="background: linear-gradient(135deg, #1a0000, #2a0000, #0d0000);">
+                <div
+                    style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(255,0,0,0.4) 0%,rgba(255,150,0,0.1) 40%,transparent 70%);">
+                </div>
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7e/Mortal_Kombat_11_cover_art.png/250px-Mortal_Kombat_11_cover_art.png"
+                    alt="">
+                <span
+                    style="position:relative;z-index:2;font-family:'Orbitron',sans-serif;font-size:0.65rem;color:#fca5a5;letter-spacing:2px;margin-top:0.5rem;">MORTAL
+                    KOMBAT 1</span>
+            </div>
+            <div class="entry-fee-tag">Entry: $8.00</div>
+            <div class="ps5-platform">PS5</div>
+            <div class="ps5-game-overlay">
+                <div class="ps5-game-badge hot">💥 Fight Now</div>
+                <div class="ps5-rating">★★★★☆ <span>(31.8k reviews)</span></div>
+                <h3 class="ps5-game-title">Mortal Kombat 1</h3>
+                <p class="ps5-game-genre">Fighting • Versus</p>
+                <div class="ps5-game-footer">
+                    <div class="ps5-game-price">
+                        <span class="ps5-price-paid">
+                            <span class="original">$59.99</span>
+                            <span class="discounted">$8.00</span>
+                        </span>
+                    </div>
+                    <button class="ps5-play-btn"
+                        onclick="showNotification('Entering Mortal Kombat! 🐉')">FIGHT!</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 8: Fortnite -->
+        <div class="ps5-game-card">
+            <div class="ps5-game-img-fallback"
+                style="background: linear-gradient(135deg, #001a33, #003366, #0066ff, #001a33);">
+                <div
+                    style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(0,212,255,0.4) 0%,transparent 70%);">
+                </div>
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Fortnite_Save_The_World.jpg/250px-Fortnite_Save_The_World.jpg"
+                    alt="">
+                <span
+                    style="position:relative;z-index:2;font-family:'Orbitron',sans-serif;font-size:0.65rem;color:#7dd3fc;letter-spacing:2px;margin-top:0.5rem;">FORTNITE
+                    BATTLE ROYALE</span>
+            </div>
+            <div class="entry-fee-tag">Entry: FREE</div>
+            <div class="ps5-platform">PS5</div>
+            <div class="ps5-game-overlay">
+                <div class="ps5-game-badge free">✦ Free to Play</div>
+                <div class="ps5-rating">★★★★☆ <span>(128k reviews)</span></div>
+                <h3 class="ps5-game-title">Fortnite Battle Royale</h3>
+                <p class="ps5-game-genre">Battle Royale • Build & Fight</p>
+                <div class="ps5-game-footer">
+                    <div class="ps5-game-price"><span class="ps5-price-free">FREE</span></div>
+                    <button class="ps5-play-btn" onclick="showNotification('Dropping into Fortnite! 🏗️')">PLAY
+                        FREE</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+    </section>
+
+
+
     <!-- BOOKING SECTION -->
     <section id="booking">
         <div class="section-container">
             <h2 class="section-title">BOOK YOUR GAMING ZONE</h2>
             <div class="booking-container">
                 <div class="booking-form">
-                    <h3 style="color: var(--neon-green); margin-bottom: 2rem; font-family: 'Audiowide', cursive; letter-spacing: 1px;">MAKE A BOOKING</h3>
+                    <h3
+                        style="color: var(--neon-green); margin-bottom: 2rem; font-family: 'Audiowide', cursive; letter-spacing: 1px;">
+                        MAKE A BOOKING</h3>
                     <form onsubmit="addBooking(event)">
                         <div class="form-group-booking">
                             <label for="playerName">Player Name</label>
@@ -1939,7 +2726,9 @@
                 </div>
 
                 <div class="bookings-list">
-                    <h3 style="color: var(--neon-cyan); margin-bottom: 2rem; font-family: 'Audiowide', cursive; letter-spacing: 1px;">YOUR BOOKINGS</h3>
+                    <h3
+                        style="color: var(--neon-cyan); margin-bottom: 2rem; font-family: 'Audiowide', cursive; letter-spacing: 1px;">
+                        YOUR BOOKINGS</h3>
                     <div id="bookingsList" style="max-height: 600px; overflow-y: auto;"></div>
                 </div>
             </div>
@@ -1984,7 +2773,8 @@
                                 <p>🎯 Zone: Premium Arena A</p>
                             </div>
                         </div>
-                        <div class="booking-item" style="flex-direction: column; align-items: flex-start; margin-top: 1rem;">
+                        <div class="booking-item"
+                            style="flex-direction: column; align-items: flex-start; margin-top: 1rem;">
                             <div class="booking-info" style="width: 100%;">
                                 <h4>Tournament: Pro Gaming League</h4>
                                 <p>📅 This Weekend</p>
@@ -2064,7 +2854,8 @@
                     <div class="blog-content">
                         <p class="blog-date">June 10, 2024</p>
                         <h3 class="blog-title">Mobile Gaming Revolution</h3>
-                        <p class="blog-excerpt">Discover the latest trends in mobile gaming and how they're reshaping the esports landscape. Learn about new technologies and gaming experiences.</p>
+                        <p class="blog-excerpt">Discover the latest trends in mobile gaming and how they're reshaping
+                            the esports landscape. Learn about new technologies and gaming experiences.</p>
                         <a href="#" class="read-more">READ MORE <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -2074,7 +2865,8 @@
                     <div class="blog-content">
                         <p class="blog-date">June 8, 2024</p>
                         <h3 class="blog-title">Championship Finals Recap</h3>
-                        <p class="blog-excerpt">Exciting highlights from the recent championship finals. Witness incredible performances and unexpected comebacks from top players worldwide.</p>
+                        <p class="blog-excerpt">Exciting highlights from the recent championship finals. Witness
+                            incredible performances and unexpected comebacks from top players worldwide.</p>
                         <a href="#" class="read-more">READ MORE <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -2084,7 +2876,8 @@
                     <div class="blog-content">
                         <p class="blog-date">June 5, 2024</p>
                         <h3 class="blog-title">New Gaming Features Launch</h3>
-                        <p class="blog-excerpt">Explore our brand new gaming features including advanced matchmaking, ranking system, and social integrations for better gaming experience.</p>
+                        <p class="blog-excerpt">Explore our brand new gaming features including advanced matchmaking,
+                            ranking system, and social integrations for better gaming experience.</p>
                         <a href="#" class="read-more">READ MORE <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -2094,7 +2887,8 @@
                     <div class="blog-content">
                         <p class="blog-date">June 1, 2024</p>
                         <h3 class="blog-title">Gaming PC Requirements</h3>
-                        <p class="blog-excerpt">Complete guide to choosing the right gaming PC specifications for optimal performance. Learn about GPUs, CPUs, and other essential components.</p>
+                        <p class="blog-excerpt">Complete guide to choosing the right gaming PC specifications for
+                            optimal performance. Learn about GPUs, CPUs, and other essential components.</p>
                         <a href="#" class="read-more">READ MORE <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -2104,7 +2898,8 @@
                     <div class="blog-content">
                         <p class="blog-date">May 28, 2024</p>
                         <h3 class="blog-title">Competitive Gaming Tips</h3>
-                        <p class="blog-excerpt">Master strategies from professional gamers. Learn positioning, timing, and teamwork techniques to improve your competitive gaming skills.</p>
+                        <p class="blog-excerpt">Master strategies from professional gamers. Learn positioning, timing,
+                            and teamwork techniques to improve your competitive gaming skills.</p>
                         <a href="#" class="read-more">READ MORE <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -2114,7 +2909,8 @@
                     <div class="blog-content">
                         <p class="blog-date">May 25, 2024</p>
                         <h3 class="blog-title">Global Gaming Community</h3>
-                        <p class="blog-excerpt">Join millions of gamers worldwide. Connect, compete, and collaborate with players from different regions and gaming backgrounds.</p>
+                        <p class="blog-excerpt">Join millions of gamers worldwide. Connect, compete, and collaborate
+                            with players from different regions and gaming backgrounds.</p>
                         <a href="#" class="read-more">READ MORE <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -2129,9 +2925,13 @@
             <div class="about-content">
                 <div class="about-text">
                     <h3>The Ultimate Gaming Platform</h3>
-                    <p>EliteGamix is a premier online gaming zone reservation and management platform designed for competitive gamers and esports enthusiasts. We provide world-class gaming facilities, professional tournaments, and a thriving community for gamers of all levels.</p>
-                    <p>Our mission is to revolutionize the gaming experience by combining cutting-edge technology with professional esports infrastructure. Whether you're a casual gamer or aspiring pro, EliteGamix is your destination for excellence.</p>
-                    
+                    <p>EliteGamix is a premier online gaming zone reservation and management platform designed for
+                        competitive gamers and esports enthusiasts. We provide world-class gaming facilities,
+                        professional tournaments, and a thriving community for gamers of all levels.</p>
+                    <p>Our mission is to revolutionize the gaming experience by combining cutting-edge technology with
+                        professional esports infrastructure. Whether you're a casual gamer or aspiring pro, EliteGamix
+                        is your destination for excellence.</p>
+
                     <div class="features-list">
                         <div class="feature-item">
                             <div class="feature-icon"><i class="fas fa-gamepad"></i></div>
@@ -2163,9 +2963,9 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="about-image">
-                    <i class="fas fa-crown"></i>
+                   <img src="hero-5-1.png" alt="">
                 </div>
             </div>
         </div>
@@ -2238,7 +3038,9 @@
                     </div>
 
                     <div style="margin-top: 2rem;">
-                        <h4 style="color: var(--neon-green); margin-bottom: 1.5rem; font-family: 'Audiowide', cursive; letter-spacing: 1px;">FOLLOW US ON SOCIAL MEDIA</h4>
+                        <h4
+                            style="color: var(--neon-green); margin-bottom: 1.5rem; font-family: 'Audiowide', cursive; letter-spacing: 1px;">
+                            FOLLOW US ON SOCIAL MEDIA</h4>
                         <div class="social-links">
                             <a href="#" class="social-link">
                                 <i class="fab fa-twitter"></i>
@@ -2267,7 +3069,8 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h4>EliteGamix</h4>
-                <p style="color: var(--text-secondary); font-size: 0.9rem;">The ultimate esports and gaming platform for competitive gamers worldwide.</p>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">The ultimate esports and gaming platform for
+                    competitive gamers worldwide.</p>
             </div>
             <div class="footer-section">
                 <h4>Quick Links</h4>
@@ -2300,7 +3103,8 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 EliteGamix. All rights reserved. | Crafted with <span style="color: var(--neon-pink);">❤</span> for Gamers</p>
+            <p>&copy; 2024 EliteGamix. All rights reserved. | Crafted with <span
+                    style="color: var(--neon-pink);">❤</span> for Gamers</p>
             <p style="font-size: 0.85rem;">Shaping the Future of Esports</p>
         </div>
     </footer>
@@ -2322,7 +3126,7 @@
         function initializeTimeSlots() {
             const timeSlots = document.getElementById('timeSlots');
             const times = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
-            
+
             timeSlots.innerHTML = '';
             times.forEach(time => {
                 const slot = document.createElement('div');
@@ -2331,18 +3135,18 @@
                 slot.onclick = () => selectTimeSlot(slot, time);
                 timeSlots.appendChild(slot);
             });
-            
+
             updateBookingsDisplay();
         }
 
         // Select time slot
         function selectTimeSlot(element, time) {
             if (element.classList.contains('booked')) return;
-            
+
             document.querySelectorAll('.time-slot').forEach(slot => {
                 slot.classList.remove('selected');
             });
-            
+
             element.classList.add('selected');
             selectedTime = time;
         }
@@ -2351,12 +3155,12 @@
         function updateBookingsDisplay() {
             const bookingsList = document.getElementById('bookingsList');
             const selectedDate = document.getElementById('bookingDate').value;
-            
+
             if (bookings.length === 0) {
                 bookingsList.innerHTML = '<p style="color: var(--text-secondary); text-align: center;">No bookings yet. Make your first reservation!</p>';
                 return;
             }
-            
+
             bookingsList.innerHTML = bookings.map((booking, index) => `
                 <div class="booking-item">
                     <div class="booking-info">
@@ -2374,7 +3178,7 @@
                     </div>
                 </div>
             `).join('');
-            
+
             // Mark booked slots
             if (selectedDate) {
                 markBookedSlots(selectedDate);
@@ -2398,27 +3202,27 @@
         // Add booking
         function addBooking(e) {
             e.preventDefault();
-            
+
             if (!selectedTime) {
                 showNotification('Please select a time slot!', 'error');
                 return;
             }
-            
+
             const booking = {
                 name: document.getElementById('playerName').value,
                 game: document.getElementById('gameSelect').value,
                 date: document.getElementById('bookingDate').value,
                 time: selectedTime
             };
-            
+
             bookings.push(booking);
             localStorage.setItem('bookings', JSON.stringify(bookings));
-            
+
             e.target.reset();
             selectedTime = null;
             document.querySelectorAll('.time-slot').forEach(slot => slot.classList.remove('selected'));
             updateBookingsDisplay();
-            
+
             showNotification('Booking confirmed successfully! ✅');
             updateDashboard();
         }
@@ -2440,9 +3244,9 @@
             document.getElementById('playerName').value = booking.name;
             document.getElementById('gameSelect').value = booking.game;
             document.getElementById('bookingDate').value = booking.date;
-            
+
             deleteBooking(index);
-            document.getElementById('booking').scrollIntoView({behavior: 'smooth'});
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
         }
 
         // Update dashboard
@@ -2485,12 +3289,12 @@
             const name = document.getElementById('signupName').value;
             const password = document.getElementById('signupPassword').value;
             const confirm = document.getElementById('signupConfirm').value;
-            
+
             if (password !== confirm) {
                 showNotification('Passwords do not match!', 'error');
                 return;
             }
-            
+
             showNotification(`Welcome to EliteGamix, ${name}! 🎉`);
             closeSignupModal();
             document.getElementById('signupModal').reset();
@@ -2500,10 +3304,10 @@
         function playGame(game) {
             const gameModal = document.getElementById('gameModal');
             const gameContent = document.getElementById('gameContent');
-            
+
             gameContent.innerHTML = '';
-            
-            switch(game) {
+
+            switch (game) {
                 case 'tictactoe':
                     createTicTacToe();
                     break;
@@ -2523,7 +3327,7 @@
                     create2048Game();
                     break;
             }
-            
+
             gameModal.classList.add('active');
         }
 
@@ -2537,7 +3341,7 @@
             let board = ['', '', '', '', '', '', '', '', ''];
             let currentPlayer = 'X';
             let gameOver = false;
-            
+
             const html = `
                 <h2 style="text-align: center; color: var(--neon-green); margin-bottom: 2rem; font-family: 'Audiowide', cursive;">TIC TAC TOE</h2>
                 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; max-width: 300px; margin: 0 auto;">
@@ -2551,32 +3355,32 @@
                 </div>
             `;
             gameContent.innerHTML = html;
-            
-            window.playTicTacToe = function(idx) {
+
+            window.playTicTacToe = function (idx) {
                 const cell = document.getElementById(`cell-${idx}`);
                 if (cell.textContent !== '' || gameOver) return;
-                
+
                 board[idx] = currentPlayer;
                 cell.textContent = currentPlayer;
                 cell.style.color = currentPlayer === 'X' ? 'var(--neon-cyan)' : 'var(--neon-pink)';
-                
+
                 if (checkWinner(board, currentPlayer)) {
                     document.getElementById('status').textContent = `Player ${currentPlayer} Wins! 🎉`;
                     gameOver = true;
                     return;
                 }
-                
+
                 if (board.every(cell => cell !== '')) {
                     document.getElementById('status').textContent = "It's a Draw!";
                     gameOver = true;
                     return;
                 }
-                
+
                 currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
                 document.getElementById('status').textContent = `Player ${currentPlayer}'s Turn`;
             };
-            
-            window.resetTicTacToe = function() {
+
+            window.resetTicTacToe = function () {
                 board = ['', '', '', '', '', '', '', '', ''];
                 currentPlayer = 'X';
                 gameOver = false;
@@ -2604,54 +3408,54 @@
                     <p style="color: var(--text-secondary);">Use Arrow Keys to move</p>
                 </div>
             `;
-            
+
             const canvas = document.getElementById('snakeCanvas');
             const ctx = canvas.getContext('2d');
-            
-            let snake = [{x: 200, y: 200}];
-            let food = {x: Math.random() * 380, y: Math.random() * 380};
+
+            let snake = [{ x: 200, y: 200 }];
+            let food = { x: Math.random() * 380, y: Math.random() * 380 };
             let score = 0;
             let dx = 5, dy = 0;
             let nextDx = 5, nextDy = 0;
-            
+
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowUp' && dy === 0) { nextDx = 0; nextDy = -5; }
                 if (e.key === 'ArrowDown' && dy === 0) { nextDx = 0; nextDy = 5; }
                 if (e.key === 'ArrowLeft' && dx === 0) { nextDx = -5; nextDy = 0; }
                 if (e.key === 'ArrowRight' && dx === 0) { nextDx = 5; nextDy = 0; }
             });
-            
+
             function draw() {
                 dx = nextDx;
                 dy = nextDy;
-                
+
                 ctx.fillStyle = 'rgba(5, 7, 15, 0.8)';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
-                
+
                 snake[0].x += dx;
                 snake[0].y += dy;
-                
+
                 if (snake[0].x === food.x && snake[0].y === food.y) {
                     snake.push({});
-                    food = {x: Math.floor(Math.random() * 40) * 10, y: Math.floor(Math.random() * 40) * 10};
+                    food = { x: Math.floor(Math.random() * 40) * 10, y: Math.floor(Math.random() * 40) * 10 };
                     score++;
                     document.getElementById('snakeScore').textContent = score;
                 }
-                
+
                 ctx.fillStyle = 'var(--neon-green)';
                 snake.forEach(segment => {
                     ctx.fillRect(segment.x, segment.y, 10, 10);
                 });
-                
+
                 ctx.fillStyle = 'var(--neon-pink)';
                 ctx.fillRect(food.x, food.y, 10, 10);
-                
+
                 if (snake[0].x < 0 || snake[0].x >= 400 || snake[0].y < 0 || snake[0].y >= 400) {
                     alert('Game Over! Score: ' + score);
                     closeGame();
                     return;
                 }
-                
+
                 for (let i = 1; i < snake.length; i++) {
                     if (snake[0].x === snake[i].x && snake[0].y === snake[i].y) {
                         alert('Game Over! Score: ' + score);
@@ -2659,7 +3463,7 @@
                         return;
                     }
                 }
-                
+
                 setTimeout(draw, 100);
             }
             draw();
@@ -2670,10 +3474,10 @@
             const gameContent = document.getElementById('gameContent');
             const cards = ['🎮', '🎮', '🎯', '🎯', '⚡', '⚡', '🏆', '🏆', '🎲', '🎲', '🌟', '🌟'];
             let shuffled = cards.sort(() => Math.random() - 0.5);
-            
+
             let flipped = [];
             let matched = 0;
-            
+
             gameContent.innerHTML = `
                 <h2 style="text-align: center; color: var(--neon-green); margin-bottom: 2rem; font-family: 'Audiowide', cursive;">MEMORY MATCH</h2>
                 <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 400px; margin: 0 auto;">
@@ -2683,14 +3487,14 @@
                 </div>
                 <p style="text-align: center; color: var(--neon-cyan); margin-top: 2rem;">Matched: <span id="matched">0</span>/6</p>
             `;
-            
-            window.flipCard = function(idx, card) {
+
+            window.flipCard = function (idx, card) {
                 const cardEl = document.getElementById(`card-${idx}`);
                 if (cardEl.textContent !== '?' || flipped.length === 2) return;
-                
+
                 cardEl.textContent = card;
-                flipped.push({el: cardEl, card: card, idx: idx});
-                
+                flipped.push({ el: cardEl, card: card, idx: idx });
+
                 if (flipped.length === 2) {
                     if (flipped[0].card === flipped[1].card) {
                         flipped = [];
@@ -2722,20 +3526,20 @@
                     <p style="color: var(--text-secondary);">Click or Space to Flap</p>
                 </div>
             `;
-            
+
             const canvas = document.getElementById('flappyCanvas');
             const ctx = canvas.getContext('2d');
-            
-            let bird = {x: 50, y: 250, width: 20, height: 20, velocity: 0};
+
+            let bird = { x: 50, y: 250, width: 20, height: 20, velocity: 0 };
             let pipes = [];
             let score = 0;
             let gameOver = false;
-            
+
             function drawBird() {
                 ctx.fillStyle = 'var(--neon-pink)';
                 ctx.fillRect(bird.x, bird.y, bird.width, bird.height);
             }
-            
+
             function drawPipes() {
                 pipes.forEach(pipe => {
                     ctx.fillStyle = 'var(--neon-green)';
@@ -2743,46 +3547,46 @@
                     ctx.fillRect(pipe.x, pipe.topHeight + pipe.gap, pipe.width, canvas.height);
                 });
             }
-            
+
             function updateGame() {
                 if (gameOver) return;
-                
+
                 bird.velocity += 0.5;
                 bird.y += bird.velocity;
-                
+
                 if (bird.y + bird.height > canvas.height || bird.y < 0) {
                     gameOver = true;
                 }
-                
+
                 pipes.forEach((pipe, idx) => {
                     pipe.x -= 5;
-                    
+
                     if (bird.x < pipe.x + pipe.width && bird.x + bird.width > pipe.x) {
                         if (bird.y < pipe.topHeight || bird.y + bird.height > pipe.topHeight + pipe.gap) {
                             gameOver = true;
                         }
                     }
-                    
+
                     if (pipe.x + pipe.width === bird.x) {
                         score++;
                         document.getElementById('flappyScore').textContent = score;
                     }
-                    
+
                     if (pipe.x < -pipe.width) {
                         pipes.splice(idx, 1);
                     }
                 });
-                
+
                 if (pipes.length === 0 || pipes[pipes.length - 1].x < 300) {
-                    pipes.push({x: 400, width: 60, topHeight: Math.random() * 200 + 50, gap: 150});
+                    pipes.push({ x: 400, width: 60, topHeight: Math.random() * 200 + 50, gap: 150 });
                 }
-                
+
                 ctx.fillStyle = 'rgba(5, 7, 15, 0.8)';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
-                
+
                 drawBird();
                 drawPipes();
-                
+
                 if (gameOver) {
                     alert('Game Over! Score: ' + score);
                     closeGame();
@@ -2790,11 +3594,11 @@
                     requestAnimationFrame(updateGame);
                 }
             }
-            
+
             function flap() {
                 bird.velocity = -10;
             }
-            
+
             document.addEventListener('click', flap);
             document.addEventListener('keydown', (e) => {
                 if (e.code === 'Space') {
@@ -2802,7 +3606,7 @@
                     flap();
                 }
             });
-            
+
             updateGame();
         }
 
@@ -2811,7 +3615,7 @@
             const gameContent = document.getElementById('gameContent');
             let clicks = 0;
             let timeLeft = 10;
-            
+
             gameContent.innerHTML = `
                 <h2 style="text-align: center; color: var(--neon-green); margin-bottom: 2rem; font-family: 'Audiowide', cursive;">SPEED CLICKER</h2>
                 <div style="text-align: center; margin-bottom: 2rem;">
@@ -2820,9 +3624,9 @@
                 </div>
                 <p style="text-align: center; color: var(--neon-green); font-size: 1.5rem;">Clicks: <span id="clickCount">0</span></p>
             `;
-            
+
             const clickBtn = document.getElementById('clickBtn');
-            
+
             window.incrementClicks = () => {
                 clicks++;
                 document.getElementById('clickCount').textContent = clicks;
@@ -2830,7 +3634,7 @@
                 setTimeout(() => clickBtn.style.transform = 'scale(1)', 100);
                 playSound();
             };
-            
+
             const countDown = setInterval(() => {
                 timeLeft--;
                 document.getElementById('timer').textContent = timeLeft;
@@ -2886,7 +3690,7 @@
             notification.className = 'notification';
             notification.textContent = message;
             document.body.appendChild(notification);
-            
+
             setTimeout(() => {
                 notification.style.animation = 'slideOut 0.3s ease';
                 setTimeout(() => notification.remove(), 300);
@@ -2898,16 +3702,16 @@
             const audioContext = new (window.AudioContext || window.webkitAudioContext)();
             const oscillator = audioContext.createOscillator();
             const gainNode = audioContext.createGain();
-            
+
             oscillator.connect(gainNode);
             gainNode.connect(audioContext.destination);
-            
+
             oscillator.frequency.value = 800;
             oscillator.type = 'sine';
-            
+
             gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
             gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-            
+
             oscillator.start(audioContext.currentTime);
             oscillator.stop(audioContext.currentTime + 0.1);
         }
@@ -2916,7 +3720,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             initializeTimeSlots();
             updateDashboard();
-            
+
             document.getElementById('bookingDate').addEventListener('change', () => {
                 updateBookingsDisplay();
             });
@@ -2932,4 +3736,5 @@
         });
     </script>
 </body>
+
 </html>
